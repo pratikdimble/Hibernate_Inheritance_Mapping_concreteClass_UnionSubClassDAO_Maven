@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!--  Super Class Properties-->
+	<class name="com.pratik.domain.Insurance" table="Insurance_CC" >
+		<id	name="id" column="ID" type="int" >
+			<generator class="increment"></generator>
+		</id>
+		<property name="name" column="Name" type="string" length="15"/>
+		<property name="company" column="Company" type="string" length="10"/>
+			<!--  Sub Class Properties-->
+			<union-subclass name="com.pratik.domain.LifeInsurance" table="Life_CC" >
+				<property name="policy_name" column="PolicyName" type="string" length="15" not-null="false"/>
+			</union-subclass>
+				<!--  Sub class Properties-->
+				<union-subclass name="com.pratik.domain.VehicleInsurance" table="vehicle_CC" >
+					<property name="vehType" column="Vehicle" type="string" length="15" not-null="false"/>
+				</union-subclass>
+	</class>
+</hibernate-mapping>
